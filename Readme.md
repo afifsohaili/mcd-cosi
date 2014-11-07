@@ -3,7 +3,7 @@
 ##Setup
 ```
 git clone git@github.com:afifsohaili/mcd-cosi.git
-bundle install
+bundle install --local
 ```
 *Note: This project uses [require-all](https://github.com/jarmo/require_all) gem to autoload all files in `lib/` folder and all of its subdirectories*
 
