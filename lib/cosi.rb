@@ -2,8 +2,8 @@ class Cosi < Restaurant
 
   def start
     puts "Cosi opened"
-    # @elapsed.each do |tick|
-    #   # logic
+    # (@seconds).times do |second|
+    #   # logic here
     # end
   end
 

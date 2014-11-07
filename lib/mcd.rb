@@ -2,8 +2,8 @@ class McDonalds < Restaurant
 
   def start
     puts "McDonalds opened"
-    # @elapsed.each do |tick|
-    #   # logic
+    # (@seconds).times do |second|
+    #   # logic here
     # end
   end
 
