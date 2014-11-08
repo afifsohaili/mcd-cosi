@@ -1,5 +1,5 @@
 class Restaurant
-  HOURS = 18
+  HOURS = 0.2
   MINUTES = 60
   SECONDS = 60
 

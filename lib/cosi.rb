@@ -4,7 +4,7 @@ class Cosi < Restaurant
   def initialize
     super
     @customers = Array.new
-    @queue = Array.new
+    @queue = Queue.new
     @counters = Array.new
     (1..3).each do |id|
       @counters << Counter.new(id, @queue)
@@ -16,9 +16,12 @@ class Cosi < Restaurant
       @current_time = second
       if (@current_time % 60 == 0 && is_open?)
         receive_customers
+        # p @customers
+        # p @queue
       end
       serve_customer
     end
+    # p @customers
   end
 
   private
@@ -33,47 +36,25 @@ class Cosi < Restaurant
   end
 
   def add_customers(num)
-    p "#{num} customers arrived at #{formatted_current_time @current_time}"
+    # p "#{num} customers arrived at #{formatted_current_time @current_time}"
     num.times do
       add_customer
     end
-    p "Customer in queue: #{@queue.size}"
+    # p "Customer in queue: #{@queue.size}"
   end
 
   def add_customer
-    @queue.push(1)
-    @customers.push(1)
+    @customers.push(@current_time)
+    @queue.push(@customers.size - 1)
   end
 
   def serve_customer
     @counters.each do |counter|
-      counter.serve_customer @current_time
+      data = counter.serve_customer @current_time
+      unless data.nil?
+        cid = data[:customer].to_i
+        @customers[cid] = @current_time - @customers[cid] + data[:time_spent]
+      end
     end
-  end
-end
-
-class Counter
-  include TimeFormatter
-  def initialize(id, queue)
-    @id = id
-    @free_at = 0
-    @queue = queue
-  end
-
-  def free?(current_time)
-    current_time > @free_at
-  end
-
-  def serve_customer(current_time)
-    if free?(current_time) && @queue.size > 0
-      take_customer
-      time_spent = Random.rand((1 * 60)..(2.5 * 60))
-      @free_at = current_time + time_spent
-      p "Counter ##{@id} takes a new customer at #{formatted_current_time current_time}. Current queue size: #{@queue.size}"
-    end
-  end
-
-  def take_customer
-    @queue.pop
   end
 end
