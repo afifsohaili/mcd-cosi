@@ -6,4 +6,14 @@ class Restaurant
   def initialize
     @seconds = HOURS * MINUTES * SECONDS
   end
+
+  def self.HOURS
+    HOURS
+  end
+  def self.MINUTES
+    MINUTES
+  end
+  def self.SECONDS
+    SECONDS
+  end
 end
