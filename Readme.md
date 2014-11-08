@@ -75,6 +75,31 @@ Print a log showing the results of respective serving line type.
 ```
 # You will need this at least twice throughout the program
 Random.rand(1..10) # This will generate a random number between 1 and 10.
+
+# Different types of loops/iterators in Ruby:
+0.step(10, 2) do |v|
+  puts v
+end # => 0, 2, 4, 6, 8
+
+12.step(6, -2) do |iter|
+  puts iter
+end # => 12, 10, 8, 6
+
+5.downto(3) do |j|
+  puts j
+end # => 5, 4, 3
+
+3.upto(5) do |x|
+  puts x
+end # => 3, 4, 5
+
+4.times do
+  puts 1
+end # => 1, 1, 1, 1
+
+[1, 5, 9].each do |i|
+  puts (i + 1)
+end # => 2, 6, 10
 ```
 
 ___
